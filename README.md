@@ -1,14 +1,14 @@
 # ⚡ High-Power ZVS Driver
 
-> A Mazzilli-topology Zero-Voltage-Switching driver, simulated, built and characterized on the bench. Built to understand one of the most elegant self-oscillating circuits in power electronics.
+> A Mazzilli-topology Zero-Voltage-Switching driver — simulated, built and characterized on the bench. Built to understand one of the most elegant self-oscillating circuits in power electronics.
 
-![ZVS driver board](images/zvs_board.jpeg)
+![ZVS driver board](images/zvs_pcb_top.jpeg)
 
 ---
 
 ## 🎯 Why this project
 
-The ZVS is a circuit that looks almost too simple for what it does: two MOSFETs, a handful of passives, no controller, no microcontroller — and it self-oscillates at exactly the right frequency, switching each transistor at the precise moment its drain voltage crosses zero.
+The ZVS looks almost too simple for what it does: two MOSFETs, a handful of passives, no controller, no microcontroller — and it self-oscillates at exactly the right frequency, switching each transistor at the precise moment its drain voltage crosses zero.
 
 I built it to understand *why* that works. Along the way it also became a working induction heater.
 
@@ -35,39 +35,50 @@ I built it to understand *why* that works. Along the way it also became a workin
 
 The first step of this project wasn't a soldering iron — it was **LTspice**. Before touching a single component I simulated the full circuit to understand the oscillation mechanism and verify the passive values.
 
-![LTspice simulation](images/ltspice_sim.png)
+<p align="center">
+  <img src="images/zvs_ltspice.png" width="48%">
+  <img src="images/zvs_mosfet_gate_voltage.png" width="48%">
+</p>
+<p align="center"><i>Tank waveform and MOSFET gate drive, simulated in LTspice</i></p>
 
 The simulation files are in [`/simulations`](simulations/).
 
-Then came a **breadboard prototype**, and finally the custom PCB.
-
-![Breadboard prototype](images/breadboard_proto.jpeg)
-
 ---
 
-## 🖥️ PCB
+## 🖥️ The board
 
-![PCB layout](images/pcb_layout.png)
+<p align="center">
+  <img src="images/zvs_pcb_3d.png" width="48%">
+  <img src="images/zvs_pcb_layout.png" width="48%">
+</p>
+<p align="center"><i>3D render and copper layout — KiCad</i></p>
+
+Wide, heavy copper pours on the power paths, and generous spacing around the tank — this board carries real current.
+
+<p align="center">
+  <img src="images/zvs_pcb_top.jpeg" width="48%">
+  <img src="images/zvs_pcb_bottom.jpeg" width="48%">
+</p>
+<p align="center"><i>Assembled board, top and bottom</i></p>
 
 ---
 
 ## 📊 Bench characterization
 
-The defining claim of a ZVS is in its name: each MOSFET switches when the voltage across it is at zero, which is why the losses stay so low. So that's what I went looking for on the scope — and confirmed. **Switching happens at the zero crossing**, as designed.
+The defining claim of a ZVS is in its name: each MOSFET switches when the voltage across it is at zero, which is why the losses stay so low. So that's what I went looking for on the scope — and confirmed. **Switching happens at the zero crossing**, exactly as designed.
 
-![Scope capture](images/scope_zvs.jpeg)
+![Scope capture at resonance](images/zvs_oscilloscope_screen_56uH_resonance.png)
+<p align="center"><i>Tank waveform at resonance with a 56 µH work coil</i></p>
 
-Everything was verified with a work coil attached, running the tank at resonance.
+The clean, undistorted sine here is the signature of a tank running properly at resonance — and a direct confirmation of the simulated waveform.
+
+<p align="center">
+  <img src="images/zvs_oscilloscope.jpeg" width="48%">
+  <img src="images/zvs_oscilloscope_and_sim.jpeg" width="48%">
+</p>
+<p align="center"><i>Measuring on the bench — simulation and reality side by side</i></p>
 
 **Thermal behaviour:** at just under 10 A, nothing on the board runs hot — not the MOSFETs, not the resistors, not the caps. The components are comfortably sized for the job.
-
----
-
-## 🔥 Induction heating
-
-With a work coil on the output, the driver becomes an induction heater.
-
-*(photos coming)*
 
 ---
 
@@ -81,7 +92,7 @@ I'm interested in eventually driving high-voltage transformers with it — but o
 
 ## 📚 References
 
-Built after working through the classic technical documentation on the topology, along with explainer videos from **ElectroBOOM** and others in the community who've covered this circuit well.
+Built after working through the technical documentation on the topology, along with explainer videos from **ElectroBOOM** and others in the community who've covered this circuit well.
 
 ---
 
