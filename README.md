@@ -45,6 +45,17 @@ The simulation files are in [`/simulations`](simulations/).
 
 ---
 
+### Breadboard prototype
+
+Before committing to a PCB, a smaller version was built on breadboard using **IRLZ44N** MOSFETs and simple 0.33 µF film capacitors (the mains-filtering type). Lower power, same topology — enough to confirm the circuit oscillates as simulated before spending money on copper.
+
+<p align="center">
+  <img src="images/zvs_breadboard_proto_1.jpeg" width="48%">
+  <img src="images/zvs_breadboard_proto_2.jpeg" width="48%">
+</p>
+
+---
+
 ## 🖥️ The board
 
 <p align="center">
