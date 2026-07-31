@@ -99,3 +99,9 @@ Built after working through the technical documentation on the topology, along w
 ## 🛠️ Built with
 
 `LTspice` · `KiCad` · `Oscilloscope characterization` · `Power electronics`
+
+---
+
+## 🏭 Manufacturing
+
+PCBs manufactured by **JLCPCB**, as with every board I've designed.
